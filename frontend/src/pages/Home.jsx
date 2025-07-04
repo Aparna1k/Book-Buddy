@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import BookList from '../components/BookList';
 
@@ -6,7 +6,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const token = localStorage.getItem("token");
 
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
     if (!token) {
       alert("You must be logged in to view your books.");
       return;
@@ -24,10 +24,10 @@ const Home = () => {
       if (err.response?.status === 401) {
         alert("Session expired or invalid token. Please login again.");
         localStorage.removeItem("token");
-        window.location.href = "/login"; // Redirect to login
+        window.location.href = "/login";
       }
     }
-  };
+  }, [token]);
 
   const deleteBook = async (id) => {
     if (!token) return;
@@ -39,7 +39,7 @@ const Home = () => {
             Authorization: `Bearer ${token}`
           }
         });
-        fetchBooks();
+        fetchBooks(); // ✅ safe to use now
       } catch (err) {
         console.error("Failed to delete book:", err);
       }
@@ -48,7 +48,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [token]);
+  }, [fetchBooks]); // ✅ now this is valid
 
   return (
     <div className="container mt-4">
