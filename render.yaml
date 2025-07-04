@@ -8,8 +8,9 @@ services:
     startCommand: gunicorn bookbuddy.wsgi:application
     envVars:
       - key: DJANGO_SECRET_KEY
-        value: !%59+=fdb$w#&3a-dnd3t3pu5h3&d%8)nm3i27*r$)49n6y76d   
+        value: !%59+=fdb$w#&3a-dnd3t3pu5h3&d%8)nm3i27*r$)49n6y76d
       - key: DEBUG
         value: False
       - key: ALLOWED_HOSTS
         value: book-buddy-backend-52jf.onrender.com
+
