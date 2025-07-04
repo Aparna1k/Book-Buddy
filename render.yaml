@@ -3,12 +3,12 @@ services:
     name: book-buddy-backend
     env: python
     branch: main
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: gunicorn backend.wsgi:application
     rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn bookbuddy.wsgi:application
     envVars:
       - key: DJANGO_SECRET_KEY
-        value: your-generated-secret-key
+        value: !%59+=fdb$w#&3a-dnd3t3pu5h3&d%8)nm3i27*r$)49n6y76d
       - key: DEBUG
         value: False
       - key: ALLOWED_HOSTS
