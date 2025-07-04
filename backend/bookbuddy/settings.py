@@ -143,4 +143,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ✅ This line you asked a
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allow frontend to access backend
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://book-buddy-frontend.netlify.app",
+]
+
